@@ -1,5 +1,5 @@
  '''
-Reference article: j
+Reference article: for fun:)
 https://medium.com/dsc-srm/make-a-whatsapp-spammer-in-under-10-lines-of-python-code-b414024db8e
 '''
 
