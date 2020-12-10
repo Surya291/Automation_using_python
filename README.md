@@ -39,3 +39,5 @@ Selenium
 ```
 Download the geckodriver,either from the web or from the repo. Add the path in the code
 When all the packages are installed run the code (Autofeed.py)
+
+Feel free to raise bug issues ... I know, It's really a shitty code..:)) 
