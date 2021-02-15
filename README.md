@@ -28,3 +28,16 @@ Enter message to send: Ka-Chio {Your msg}
 Happy Bombing !!!
 
 
+## 2. AIMS Autofeed
+The Autofeed.py consists of code that fills the segmental feedback for you. 
+All you need to do is to enter your Id and PWD in the code and enter the captcha in the terminal.
+
+Requirements.. 
+```
+Geckodriver (for mozilla users... a.k.a Chrome haters)
+Selenium
+```
+Download the geckodriver,either from the web or from the repo. Add the path in the code
+When all the packages are installed run the code (Autofeed.py)
+
+Feel free to raise bug issues ... I know, It's really a shitty code..:)) 
