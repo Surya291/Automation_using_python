@@ -1,8 +1,10 @@
 #### Program : AutoFeed "Automatic feedback giving bot for slothbears like you"
-#### Version : 01
+#### Version : 02, 
 #### By : K.Surya Prakash
 #### Date : Nov, 6 2020
 #### update 01: 10 DEC 2020
+#### update 02 : 15 Feb, 2021(fixed the bug of clicking radio buttons , and optimised it)
+
 
 '''
 Current job : Gives feedback for the courses , which are due . Your user Id and pwd is given in the script itself. Need to input the 2 stage captcha manually in the cmd line.
@@ -18,6 +20,7 @@ Need to figure out a way to solve captcha , to do the whole task in one click.
 
 #### Code : 
 
+
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -28,6 +31,8 @@ from selenium.webdriver.common.action_chains import ActionChains
 import time
 
 ######## feedback starts here.. choosing the single button and choosing options is taken cate by this code part
+
+
 
 def select_options():
 	fb_R= WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.ID, 'fbRemarks')))
@@ -45,36 +50,21 @@ def select_options():
 	3 == 'N'
 	4 == 'D'
 	5 == 'SD'
+		
 	'''
 
-	fb_scale = 1
-	A = [9,12,15,18]
-	B = [range(1,5),range(1,10),range(1,5),range(1,4)]
-	
-	def generate_xpath(i,j):
-		prefix = str('/html/body/div[4]/div/div[1]/div[3]/div[1]/div[3]/')
-		suffix = str('/div[1]/div[1]/div[2]/input[' + str(fb_scale) + ']')
-		main = str('div[' + str(i) + ']/' + 'div[' + str(j) + ']' )
-		return str(prefix + main + suffix)
-		
-	for count in range(0,4):
-		i = A[count]
-		for j in B[count]:
-			time.sleep(0.1)
-			try:
-				driver.find_element_by_xpath(generate_xpath(i,j)).click()
-			except:### when we get to the end of the page and want to scrool..
-				### typically needs twp scrolls for a full page...
+	### Updated : 
 
-				driver.execute_script("window.scrollTo(0, window.scrollY + 500)")
-				
-				time.sleep(2)
-				driver.find_element_by_xpath(generate_xpath(i,j)).click()
+	questions = driver.find_elements_by_css_selector("input[type = 'radio'][value = '5.00']")
+	for q in questions :
+		try : 
+			q.click()
+		except : 
+			driver.execute_script("window.scrollTo(0, window.scrollY + 500)")
+			q.click()
 	driver.find_element_by_id('savefb').click()
 	WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.ID, "back" ))).click()
-	
-	
-
+		
 ###########################################################
 
 
@@ -94,8 +84,8 @@ print(driver.title)
 
 ############################################  SETUP... detatils input...
 		## ******************** IMPORTANT ************************
-LOGIN = str("ee18btech*****")							#### User Id
-PWD = str("**********")								#### Pwd
+LOGIN = str("ee18btech11026")							#### User Id
+PWD = str("keA5nv4g")								#### Pwd
 
 Id = driver.find_element_by_id("uid")
 Id.send_keys(LOGIN)
@@ -126,6 +116,8 @@ time.sleep(3)
 driver.maximize_window()			## maximises the window...
 driver.implicitly_wait(5)
 ## clicks Academic and opens My Courses
+time.sleep(3)
+
 Academic = driver.find_element_by_xpath('//span[@title="Academic"]').click()
 View_my_course = driver.find_element_by_xpath('//span[@title = "View My Courses"]').click()
 time.sleep(5)
