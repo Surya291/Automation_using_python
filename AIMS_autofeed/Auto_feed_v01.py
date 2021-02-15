@@ -84,8 +84,8 @@ print(driver.title)
 
 ############################################  SETUP... detatils input...
 		## ******************** IMPORTANT ************************
-LOGIN = str("ee18btech11026")							#### User Id
-PWD = str("keA5nv4g")								#### Pwd
+LOGIN = str("ee18btech*****")							#### User Id
+PWD = str("*******")								#### Pwd
 
 Id = driver.find_element_by_id("uid")
 Id.send_keys(LOGIN)
